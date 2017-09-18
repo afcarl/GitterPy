@@ -30,6 +30,7 @@ class BaseApi:
             room_list Return list of rooms
             group_list  Return list of groups
     """
+    footers = ""
     def __init__(self, token):
         if not token:
             raise GitterTokenError
@@ -41,7 +42,7 @@ class BaseApi:
         return method(url, headers=self.headers, stream=True, **kwargs).json()
 
     def request_process(self, method, api, **kwargs):
-        url = GITTER_BASE_URL + api
+        url = GITTER_BASE_URL + api + BaseApi.footers
         return method(url, headers=self.headers, **kwargs).json()
 
     def get(self, api, **kwargs):
