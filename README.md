@@ -7,7 +7,7 @@ Python 3 interface for the [Gitter API](https://github.com/gitterHQ/docs/blob/ma
 
 Releases
 =================================
-* 0.1.4 - PyPi
+* 0.1.6 - PyPi
 
 
 Installation
@@ -99,7 +99,12 @@ gitter.user.channels
 ### Stream
 ```python
 # Chat messages
-gitter.stream.chat_messages('gitterHQ/sandbox')
+
+response = gitter.stream.chat_messages('gitterHQ/sandbox')
+
+for stream_messages in response.iter_lines():
+    if stream_messages:
+        print(stream_messages)
 
 # Events
 gitter.stream.events('gitterHQ/sandbox')
